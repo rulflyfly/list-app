@@ -1,0 +1,24 @@
+.wrapper {
+    position: relative;
+    width: 100vw;
+    margin: 0 auto;
+
+    @include mq($brk-m) {
+        max-width: 50em;
+    }
+
+    & .one {
+        position: absolute;
+        width: 100%;
+        height: 100vh;
+        transition: 1s;
+    }
+    
+    & .two {
+        width: 100%;
+        min-height: 100vh;
+        margin: 0 auto;
+        left: 25%;
+    }
+}
+

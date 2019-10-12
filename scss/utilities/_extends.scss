@@ -1,0 +1,25 @@
+%button {
+    flex-direction: column;
+    width: 1.5em;
+    height: 1.5em;
+    margin: .2em;
+    text-align: center;
+    color: $text-primary-color;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border: none;
+    border-radius: .3em;
+
+    &:focus {
+        outline: 0;
+    }
+  
+}
+
+%btn-focus {
+    &:focus {
+        outline: 0;
+        transform: scale(1.1);
+    }
+}

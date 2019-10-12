@@ -1,9 +1,9 @@
 const divOne = document.querySelector('.one');
 let divTwo;
 const wrapper = document.querySelector('.wrapper');
-const hide = document.querySelector('.hide');
+const hide = document.querySelector('.btn-ok');
 const unhide = document.querySelector('.unhide');
-const listName = document.querySelector('#listName');
+const listName = document.querySelector('.input');
 let h1 = document.createElement('h1');;
 let add = document.createElement('button');
 let addItem = document.createElement('input');
@@ -39,11 +39,11 @@ hide.addEventListener('click', () => {
         listName.value = '';
 
 
-        addItem.className = 'addItemInput';
+        addItem.className = 'input';
         divTwo.appendChild(addItem);
 
         
-        add.className = 'add';
+        add.className = 'btn-ok';
         add.textContent = 'Add Item';
         divTwo.appendChild(add);
         divTwo.appendChild(ul);
@@ -66,7 +66,9 @@ add.addEventListener('click', () => {
         addButtons(li);
         
         divTwo.appendChild(anotherList);
-        anotherList.className = 'unhide';
+        anotherList.className = 'btn-ok';
+        anotherList.classList.add('btn-another-list');
+        
         anotherList.textContent = 'Create Another List'
     }
 })

@@ -1,0 +1,62 @@
+.btn {
+    
+    &-ok {
+        @extend %btn-focus;
+        padding: 1em;
+        transition: 1s;
+        display: block;
+        margin: 0 auto;
+        width: 70%;
+        border-radius: .3em;
+        border: none;
+        font-size: 1em;
+        font-weight: bold;
+        background: $ok-add-btn-color;
+        transition: 1s;
+
+        @include mq($brk-m) {
+            padding: 2em;
+        }
+
+    }
+
+    &-another-list {
+        background: $bg-text-secondary-color;
+        color: $white;
+    }
+
+}
+
+
+
+
+.buttons {
+    width: 40%;
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    height: 1.5em;
+    margin-left: 1em;
+
+    & .up {
+        @extend %button;
+        background: $bg-text-secondary-color;
+    }
+    
+    & .down {
+        @extend %button;
+        background: $bg-text-secondary-color;
+    }
+    
+    & .delete {
+        @extend %button;
+        background: $delete-color;
+        color: $white;
+    }
+}
+
+
+
+
+
+

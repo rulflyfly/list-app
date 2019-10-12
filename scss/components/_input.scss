@@ -1,0 +1,29 @@
+.input {
+    display: block;
+    margin: 1em auto .3em;
+    width: 70%;
+    padding: 1em;
+    border-radius: .3em;
+    border: none;
+    transition: 1s;
+
+    @include mq($brk-m) {
+        margin: 3em auto;
+        padding: 1.6em;
+        font-size: 1.3em;
+    }
+
+    &::placeholder {
+        color: $bg-text-secondary-color;
+        text-align: center;
+        font-size: 1.2em;
+    }
+
+    &:focus {
+        outline: 0;
+        transform: scale(1.1);
+    }
+}
+
+
+
