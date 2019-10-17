@@ -9,6 +9,7 @@ const add = document.createElement('button');
 const addItem = document.createElement('input');
 let ul;
 const anotherList = document.createElement('button');
+const previousLists = document.getElementById('prev');
 
 
 const appendToDiv = (div, el_one, el_two, el_three, el_four) => {
@@ -29,33 +30,45 @@ const makeButton = (div, name, text, cl) => {
 
 const addButtons = (element) => {
     const div = document.createElement('div');
-    const up = makeButton(div, 'up', '▲', 'up');
-    const down = makeButton(div, 'down', '▼', 'down');
-    const del =makeButton(div, 'del', 'x', 'delete');
+    makeButton(div, 'up', '▲', 'up');
+    makeButton(div, 'down', '▼', 'down');
+    makeButton(div, 'del', 'x', 'delete');
 
     div.className = 'buttons';
     element.appendChild(div);
 
-    up.addEventListener('click', () => {
-        const li = up.parentNode.parentNode;
+    whatButtonsDo();
+
+}
+
+ const whatButtonsDo = () => {
+    $('.up').on('click', (e) => {
+        const li = e.target.parentNode.parentNode;
         const parent = li.parentNode;
         if (li.previousElementSibling) {
-            parent.insertBefore(li, li.previousElementSibling);
-        }
+        parent.insertBefore(li, li.previousElementSibling);
+        localStorage.removeItem('list');
+        localStorage.setItem('list', $('ul').html());
+    }
     })
-    down.addEventListener('click', () => {
-        const li = down.parentNode.parentNode;
-        const parent = li.parentNode;
-        if (li.nextElementSibling) {
-            parent.insertBefore(li.nextElementSibling, li);
-        }
+    $('.down').on('click', (e) => {
+    const li = e.target.parentNode.parentNode;
+    const parent = li.parentNode;
+    if (li.nextElementSibling) {
+        parent.insertBefore(li.nextElementSibling, li);
+        localStorage.removeItem('list');
+    localStorage.setItem('list', $('ul').html());
+    }
     })
-    del.addEventListener('click', () => {
-        const li = del.parentNode.parentNode;
-        const parent = li.parentNode;
-        parent.removeChild(li);
-    })
-}
+    $('.delete').on('click', (e) => {
+    const li = e.target.parentNode.parentNode;
+    const parent = li.parentNode;
+    parent.removeChild(li);
+    localStorage.removeItem('list');
+    localStorage.setItem('list', $('ul').html());
+    }) 
+ }
+  
 
 
 
@@ -66,6 +79,8 @@ hide.addEventListener('click', () => {
      listName.setAttribute('placeholder', 'Please, name your list');
    
     } else {
+
+        localStorage.clear();
 
         listName.setAttribute('placeholder', '');
 
@@ -85,6 +100,8 @@ hide.addEventListener('click', () => {
             divOne.style.display = 'none';  
         }, 1000)
 
+        localStorage.setItem('listName', listName.value);
+
         h1.textContent = listName.value;
         h1.className = 'listName';
         
@@ -101,6 +118,41 @@ hide.addEventListener('click', () => {
     
 })
 
+previousLists.addEventListener('click', () => {
+
+    hide.style.opacity = '0';
+    divOne.style.opacity = '0';
+
+    divTwo = document.createElement('div');
+    ul = document.createElement('ul');
+    
+    divTwo.className = 'two';
+    wrapper.appendChild(divTwo);
+
+    appendToDiv(divTwo, h1, addItem, add, ul);
+
+    setTimeout(() => {
+        hide.style.display = 'none';
+        divOne.style.display = 'none';  
+    }, 1000)
+
+
+    h1.textContent = localStorage.getItem('listName');
+    h1.className = 'listName';
+    
+    listName.value = '';
+
+    addItem.className = 'input';
+  
+    add.className = 'btn-ok';
+    add.textContent = 'Add Item';
+   
+    ul.className = 'ul';
+
+    $('ul').html(localStorage.getItem('list'));
+    whatButtonsDo();
+})
+
 add.addEventListener('click', () => {
 
     if (addItem.value === '') {
@@ -109,9 +161,12 @@ add.addEventListener('click', () => {
   
     } else {
 
+
         const li = document.createElement('li');
 
         addItem.setAttribute('placeholder', '');
+
+        
 
         li.className = 'li';
         ul.appendChild(li);
@@ -124,6 +179,10 @@ add.addEventListener('click', () => {
         anotherList.classList.add('btn-another-list');
         
         anotherList.textContent = 'Create Another List'
+
+        localStorage.removeItem('list');
+        localStorage.setItem('list', $('ul').html());
+        
     }
 })
 
