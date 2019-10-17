@@ -3,7 +3,6 @@
     &-ok {
         @extend %btn-focus;
         padding: 1em;
-        transition: 1s;
         display: block;
         margin: 0 auto;
         width: 70%;
@@ -29,6 +28,16 @@
         color: $white;
     }
 
+}
+
+.back {
+    @extend %btn-focus;
+    padding: .5em;
+    margin: .5em;
+    border: none;
+    border-radius: .2em;
+    background: none;
+    color: $text-primary-color;
 }
 
 

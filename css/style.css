@@ -13,7 +13,7 @@
   .buttons .up:focus, .buttons .down:focus, .buttons .delete:focus {
     outline: 0; }
 
-.btn-ok:focus {
+.btn-ok:focus, .back:focus {
   outline: 0;
   transform: scale(1.1); }
 
@@ -368,7 +368,6 @@ h1 {
 
 .btn-ok {
   padding: 1em;
-  transition: 1s;
   display: block;
   margin: 0 auto;
   width: 70%;
@@ -386,6 +385,14 @@ h1 {
 .btn-another-list {
   background: #ff6f5e;
   color: white; }
+
+.back {
+  padding: .5em;
+  margin: .5em;
+  border: none;
+  border-radius: .2em;
+  background: none;
+  color: darkslategrey; }
 
 .buttons {
   width: 40%;

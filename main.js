@@ -130,7 +130,26 @@ previousLists.addEventListener('click', () => {
     wrapper.appendChild(divTwo);
 
     appendToDiv(divTwo, h1, addItem, add, ul);
-
+     
+    const back = document.createElement('button');
+    $(back).addClass('back').text('Back');
+    $(divTwo).prepend(back);
+    $(back).on('click', () => {
+        hide.style.display = 'block';
+        divOne.style.display = "block";
+    
+        
+    
+        setTimeout(() => {
+            hide.style.opacity = '1';
+            divOne.style.opacity = '1';
+        }, 100)
+    
+        divTwo.removeChild(ul);
+        wrapper.removeChild(divTwo);
+    
+    })
+     
     setTimeout(() => {
         hide.style.display = 'none';
         divOne.style.display = 'none';  
