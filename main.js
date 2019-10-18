@@ -71,7 +71,7 @@ const addButtons = (element) => {
   
 
 
-
+// hide stands for hiding the first div by setting it's display to none;
 hide.addEventListener('click', () => {
 
     if (listName.value === '') {
@@ -94,6 +94,14 @@ hide.addEventListener('click', () => {
         wrapper.appendChild(divTwo);
 
         appendToDiv(divTwo, h1, addItem, add, ul);
+
+        /*
+        As we know we can't transition a display property;
+        so to add this nice disappearing effect I first set 
+        the divs opasity to 0 and over 1s it fades away
+        in 1s I set the div's display to none so I can access the
+        seccond div that's right behind the first one;
+        */
 
         setTimeout(() => {
             hide.style.display = 'none';
@@ -133,22 +141,9 @@ previousLists.addEventListener('click', () => {
      
     const back = document.createElement('button');
     $(back).addClass('back').text('Back');
+    $(back).on('click', toList);
+
     $(divTwo).prepend(back);
-    $(back).on('click', () => {
-        hide.style.display = 'block';
-        divOne.style.display = "block";
-    
-        
-    
-        setTimeout(() => {
-            hide.style.opacity = '1';
-            divOne.style.opacity = '1';
-        }, 100)
-    
-        divTwo.removeChild(ul);
-        wrapper.removeChild(divTwo);
-    
-    })
      
     setTimeout(() => {
         hide.style.display = 'none';
@@ -205,9 +200,7 @@ add.addEventListener('click', () => {
     }
 })
 
-
-
-anotherList.addEventListener('click', () => {
+const toList = () => {
     hide.style.display = 'block';
     divOne.style.display = "block";
 
@@ -220,6 +213,7 @@ anotherList.addEventListener('click', () => {
 
     divTwo.removeChild(ul);
     wrapper.removeChild(divTwo);
+}
 
+anotherList.addEventListener('click', toList);
 
-})
